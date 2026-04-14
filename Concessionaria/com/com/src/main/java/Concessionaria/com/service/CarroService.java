@@ -1,0 +1,33 @@
+package Concessionaria.com.service;
+
+import Concessionaria.com.model.Carro;
+import Concessionaria.com.repository.CarroRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CarroService {
+
+    private final CarroRepository repository;
+
+    public CarroService(CarroRepository repository){
+        this.repository = repository;
+    }
+
+    public List<Carro> listar (){
+        return repository.findAll();
+    }
+
+    public Carro buscar(Long id){
+        return repository.findById(id).orElse(null);
+    }
+
+    public Carro salvar(Carro carro){
+        return repository.save(carro);
+    }
+
+    public void deletar(Long id){
+        repository.deleteById(id);
+    }
+}
